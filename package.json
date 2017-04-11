@@ -1,0 +1,59 @@
+{
+  "name": "react-japi-table",
+  "version": "1.0.0",
+  "description": "A React Component.",
+  "main": "./lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kassi/react-japi-table"
+  },
+  "author": "Karsten Silkenbäumer",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server -d --config webpack.development.config.js --progress --colors --display-error-details",
+    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors --display-error-details",
+    "prepublishOnly": "yarn run build",
+    "test": "semistandard | snazzy && BABEL_JEST_STAGE=0 jest",
+    "test:server": "BABEL_JEST_STAGE=0 jest --watchAll",
+    "format": "semistandard --fix"
+  },
+  "semistandard": {
+    "env": [
+      "mocha"
+    ],
+    "globals": [
+      "describe",
+      "expect",
+      "it"
+    ]
+  },
+  "jest": {
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.jsx?$"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-jest": "^19.0.0",
+    "babel-loader": "^6.4.1",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "enzyme": "^2.8.1",
+    "jest-cli": "^19.0.2",
+    "react": "^15.4.2",
+    "react-addons-css-transition-group": "^15.5.2",
+    "react-addons-perf": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-test-renderer": "^15.5.4",
+    "semistandard": "*",
+    "snazzy": "^7.0.0",
+    "webpack": "^2.3.3",
+    "webpack-dev-server": "^2.4.2"
+  },
+  "peerDependencies": {
+    "react": "15.x",
+    "react-dom": "15.x"
+  }
+}

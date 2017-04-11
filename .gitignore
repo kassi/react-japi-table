@@ -1,0 +1,8 @@
+/coverage
+/demo/*.js
+/es
+/lib
+/node_modules
+/umd
+npm-debug.log*
+yarn.lock
