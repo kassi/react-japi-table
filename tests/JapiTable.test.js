@@ -18,4 +18,9 @@ describe('JapiTable', () => {
     expect(node.hasClass('one')).toBeTruthy();
     expect(node.hasClass('two')).toBeTruthy();
   });
+
+  it('renders the head component', () => {
+    const node = shallow(<JapiTable />);
+    expect(node.find('JapiTableHead').length).toEqual(1);
+  });
 });

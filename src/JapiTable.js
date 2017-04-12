@@ -1,10 +1,14 @@
 import React from 'react';
 
+import JapiTableHead from './JapiTableHead';
+
 export default class JapiTable extends React.Component {
   render () {
     const className = 'tablesorter' + (typeof this.props.className !== 'undefined' ? ' ' + this.props.className : '');
     return (
-      <table className={className} />
+      <table className={className}>
+        <JapiTableHead />
+      </table>
     );
   }
 }
