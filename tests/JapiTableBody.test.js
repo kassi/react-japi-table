@@ -91,4 +91,42 @@ describe('JapiTableHead', () => {
     const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
     expect(node).toMatchSnapshot();
   });
+
+  it('renders cell values with render function', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id'
+      },
+      {
+        key: 'date',
+        header: 'Date',
+        renderValue: function (cellData) {
+          return (
+            <time datetime={cellData}>{cellData}</time>
+          );
+        }
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '101',
+          type: '_type',
+          attributes: {
+            date: '2017-04-10'
+          }
+        },
+        {
+          id: '102',
+          type: '_type',
+          attributes: {
+            date: '2017-04-12'
+          }
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
 });
