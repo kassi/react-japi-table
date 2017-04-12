@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JapiTableHead renders a cell for each column 1`] = `
+<thead>
+  <tr>
+    <th>
+      Id
+    </th>
+    <th>
+      Title
+    </th>
+  </tr>
+</thead>
+`;
