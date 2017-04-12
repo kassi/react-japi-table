@@ -9,7 +9,7 @@ export default class JapiTable extends React.Component {
     return (
       <table className={className}>
         <JapiTableHead columns={this.props.columns} />
-        <JapiTableBody columns={this.props.columns} />
+        <JapiTableBody columns={this.props.columns} data={this.props.data} />
       </table>
     );
   }

@@ -38,4 +38,9 @@ describe('JapiTable', () => {
     const node = shallow(<JapiTable columns={'_columns'} />);
     expect(node.find('JapiTableBody').prop('columns')).toEqual('_columns');
   });
+
+  it('passes data prop to body component', () => {
+    const node = shallow(<JapiTable data={'_data'} />);
+    expect(node.find('JapiTableBody').prop('data')).toEqual('_data');
+  });
 });
