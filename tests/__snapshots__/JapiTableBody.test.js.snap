@@ -3,16 +3,49 @@
 exports[`JapiTableHead renders a table row for each data entry 1`] = `
 <tbody>
   <tr>
-    <td>
+    <td
+      className={undefined}
+    >
       1
     </td>
-    <td />
+    <td
+      className={undefined}
+    />
   </tr>
   <tr>
-    <td>
+    <td
+      className={undefined}
+    >
       2
     </td>
-    <td />
+    <td
+      className={undefined}
+    />
+  </tr>
+</tbody>
+`;
+
+exports[`JapiTableHead renders an optional header cell className 1`] = `
+<tbody>
+  <tr>
+    <td
+      className="class1"
+    >
+      1
+    </td>
+    <td
+      className="class2"
+    />
+  </tr>
+  <tr>
+    <td
+      className="class1"
+    >
+      2
+    </td>
+    <td
+      className="class2"
+    />
   </tr>
 </tbody>
 `;
@@ -20,18 +53,26 @@ exports[`JapiTableHead renders a table row for each data entry 1`] = `
 exports[`JapiTableHead renders appropriate cell values 1`] = `
 <tbody>
   <tr>
-    <td>
+    <td
+      className={undefined}
+    >
       101
     </td>
-    <td>
+    <td
+      className={undefined}
+    >
       Title 1
     </td>
   </tr>
   <tr>
-    <td>
+    <td
+      className={undefined}
+    >
       102
     </td>
-    <td>
+    <td
+      className={undefined}
+    >
       Title 2
     </td>
   </tr>

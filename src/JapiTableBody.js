@@ -11,7 +11,7 @@ export default class JapiTableBody extends React.Component {
                 const key = column.key;
                 let value = key === 'id' ? row['id'] : (typeof row['attributes'] !== 'undefined' ? row['attributes'][key] : undefined);
                 return (
-                  <td key={'' + i + '-' + j}>
+                  <td className={column['cellClassName']} key={'' + i + '-' + j}>
                     {value}
                   </td>
                 );
