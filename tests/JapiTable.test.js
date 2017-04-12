@@ -7,4 +7,8 @@ describe('JapiTable', () => {
   it('renders a table', () => {
     expect(shallow(<JapiTable />).type()).toBe('table');
   });
+
+  it('adds tablesorter class', () => {
+    expect(shallow(<JapiTable />).hasClass('tablesorter')).toBeTruthy();
+  });
 });
