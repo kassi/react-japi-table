@@ -11,8 +11,8 @@ describe('JapiTableHead', () => {
 
   it('renders a table row for each data entry', () => {
     const columns = [
-      { header: 'Id' },
-      { header: 'Title' }
+      { key: 'id', header: 'Id' },
+      { key: 'title', header: 'Title' }
     ];
     const data = {
       data: [
@@ -23,6 +23,39 @@ describe('JapiTableHead', () => {
         {
           id: '2',
           type: '_type'
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
+
+  it('renders appropriate cell values', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id'
+      },
+      {
+        key: 'title',
+        header: 'Title'
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '101',
+          type: '_type',
+          attributes: {
+            title: 'Title 1'
+          }
+        },
+        {
+          id: '102',
+          type: '_type',
+          attributes: {
+            title: 'Title 2'
+          }
         }
       ]
     };
