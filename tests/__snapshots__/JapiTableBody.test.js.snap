@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`JapiTableHead renders a table row for each data entry 1`] = `
+<tbody>
+  <tr />
+  <tr />
+</tbody>
+`;
