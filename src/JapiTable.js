@@ -1,6 +1,7 @@
 import React from 'react';
 
 import JapiTableHead from './JapiTableHead';
+import JapiTableBody from './JapiTableBody';
 
 export default class JapiTable extends React.Component {
   render () {
@@ -8,6 +9,7 @@ export default class JapiTable extends React.Component {
     return (
       <table className={className}>
         <JapiTableHead columns={this.props.columns} />
+        <JapiTableBody />
       </table>
     );
   }
