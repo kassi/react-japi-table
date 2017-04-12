@@ -24,4 +24,19 @@ describe('JapiTableHead', () => {
     const node = renderer.create(<JapiTableHead columns={columns} />).toJSON();
     expect(node).toMatchSnapshot();
   });
+
+  it('renders an optional header cell className', () => {
+    const columns = [
+      {
+        header: 'Id',
+        headerClassName: 'class1'
+      },
+      {
+        header: 'Title',
+        headerClassName: 'class2'
+      }
+    ];
+    const node = renderer.create(<JapiTableHead columns={columns} />).toJSON();
+    expect(node).toMatchSnapshot();
+  });
 });

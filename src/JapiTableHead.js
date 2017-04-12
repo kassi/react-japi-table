@@ -7,7 +7,7 @@ export default class JapiTableHead extends React.Component {
         <tr>
           {this.props.columns ? this.props.columns.map((column, i) => {
             return (
-              <th key={i}>{column.header}</th>
+              <th className={column['headerClassName']} key={i}>{column.header}</th>
             );
           }) : undefined}
         </tr>

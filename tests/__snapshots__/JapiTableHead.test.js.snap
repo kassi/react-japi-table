@@ -3,10 +3,31 @@
 exports[`JapiTableHead renders a cell for each column 1`] = `
 <thead>
   <tr>
-    <th>
+    <th
+      className={undefined}
+    >
       Id
     </th>
-    <th>
+    <th
+      className={undefined}
+    >
+      Title
+    </th>
+  </tr>
+</thead>
+`;
+
+exports[`JapiTableHead renders an optional header cell className 1`] = `
+<thead>
+  <tr>
+    <th
+      className="class1"
+    >
+      Id
+    </th>
+    <th
+      className="class2"
+    >
       Title
     </th>
   </tr>
