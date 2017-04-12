@@ -7,7 +7,7 @@ export default class JapiTable extends React.Component {
     const className = 'tablesorter' + (typeof this.props.className !== 'undefined' ? ' ' + this.props.className : '');
     return (
       <table className={className}>
-        <JapiTableHead />
+        <JapiTableHead columns={this.props.columns} />
       </table>
     );
   }

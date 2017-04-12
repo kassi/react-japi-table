@@ -23,4 +23,9 @@ describe('JapiTable', () => {
     const node = shallow(<JapiTable />);
     expect(node.find('JapiTableHead').length).toEqual(1);
   });
+
+  it('passes columns prop to head component', () => {
+    const node = shallow(<JapiTable columns={'_columns'} />);
+    expect(node.find('JapiTableHead').prop('columns')).toEqual('_columns');
+  });
 });
