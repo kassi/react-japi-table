@@ -13,7 +13,7 @@ export default class JapiTableBody extends React.Component {
 
   getValueOfKeyPath (keyPath, data) {
     if (keyPath.length == 1) {
-      return this.getAttribute(data, keyPath[0]);
+      return [this.getAttribute(data, keyPath[0]), data];
     } else {
       const key = keyPath.shift();
       const relation = data['relationships'][key]['data'];
@@ -28,10 +28,17 @@ export default class JapiTableBody extends React.Component {
   getValue (data, column) {
     const key = column.key;
     const keyPath = key.split('.');
-    let value = this.getValueOfKeyPath(keyPath, data, column);
+    let value_and_object = this.getValueOfKeyPath(keyPath, data, column);
+    let value = Array.isArray(value_and_object) ? value_and_object[0] : value_and_object;
+    let value_object = Array.isArray(value_and_object) ? value_and_object[1] : data;
 
     if (column.renderValue) {
       return column.renderValue(value);
+    }
+    if (column.autolink && !!(value_object.links && value_object.links.self)) {
+      return (
+        <a href={value_object.links.self}>{value}</a>
+      );
     }
     return value;
   }

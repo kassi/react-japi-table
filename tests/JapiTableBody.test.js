@@ -194,4 +194,83 @@ describe('JapiTableHead', () => {
     const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
     expect(node).toMatchSnapshot();
   });
+
+  it('adds links to unrendered value', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id',
+        autolink: true
+      },
+      {
+        key: 'game.title',
+        header: 'Titel',
+        autolink: true
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '101',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-10'
+          },
+          links: {
+            self: 'http://example.com/matches/101'
+          },
+          relationships: {
+            game: {
+              data: {
+                id: '201',
+                type: 'games'
+              }
+            }
+          }
+        },
+        {
+          id: '102',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-12'
+          },
+          links: {
+            self: 'http://example.com/matches/102'
+          },
+          relationships: {
+            game: {
+              data: {
+                id: '202',
+                type: 'games'
+              }
+            }
+          }
+        }
+      ],
+      included: [
+        {
+          id: '201',
+          type: 'games',
+          attributes: {
+            title: 'Game no 1'
+          },
+          links: {
+            self: 'http://example.com/games/201'
+          }
+        },
+        {
+          id: '202',
+          type: 'games',
+          attributes: {
+            title: 'Game no 2'
+          },
+          links: {
+            self: 'http://example.com/games/202'
+          }
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
 });

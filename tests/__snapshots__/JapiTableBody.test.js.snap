@@ -1,5 +1,50 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`JapiTableHead adds links to unrendered value 1`] = `
+<tbody>
+  <tr>
+    <td
+      className={undefined}
+    >
+      <a
+        href="http://example.com/matches/101"
+      >
+        101
+      </a>
+    </td>
+    <td
+      className={undefined}
+    >
+      <a
+        href="http://example.com/games/201"
+      >
+        Game no 1
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td
+      className={undefined}
+    >
+      <a
+        href="http://example.com/matches/102"
+      >
+        102
+      </a>
+    </td>
+    <td
+      className={undefined}
+    >
+      <a
+        href="http://example.com/games/202"
+      >
+        Game no 2
+      </a>
+    </td>
+  </tr>
+</tbody>
+`;
+
 exports[`JapiTableHead renders a table row for each data entry 1`] = `
 <tbody>
   <tr>
