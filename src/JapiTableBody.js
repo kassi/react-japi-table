@@ -33,7 +33,7 @@ export default class JapiTableBody extends React.Component {
     let value_object = Array.isArray(value_and_object) ? value_and_object[1] : data;
 
     if (column.renderValue) {
-      return column.renderValue(value, {rowData: data});
+      return column.renderValue(value, {rowData: data, objectData: value_object});
     }
     if (column.autolink && !!(value_object.links && value_object.links.self)) {
       return (

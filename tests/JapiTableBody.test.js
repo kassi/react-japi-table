@@ -235,6 +235,76 @@ describe('JapiTableHead', () => {
     expect(node).toMatchSnapshot();
   });
 
+  it('renders object values of relationships with render function', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id'
+      },
+      {
+        key: 'game.title',
+        header: 'Titel',
+        renderValue: function (cellData, { objectData }) {
+          return objectData.attributes.other;
+        }
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '101',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-10'
+          },
+          relationships: {
+            game: {
+              data: {
+                id: '201',
+                type: 'games'
+              }
+            }
+          }
+        },
+        {
+          id: '102',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-12'
+          },
+          relationships: {
+            game: {
+              data: {
+                id: '202',
+                type: 'games'
+              }
+            }
+          }
+        }
+      ],
+      included: [
+        {
+          id: '201',
+          type: 'games',
+          attributes: {
+            title: 'Game no 1',
+            other: 'game 1 other'
+          }
+        },
+        {
+          id: '202',
+          type: 'games',
+          attributes: {
+            title: 'Game no 2',
+            other: 'game 2 other'
+          }
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
+
   it('adds links to unrendered value', () => {
     const columns = [
       {
