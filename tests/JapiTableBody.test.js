@@ -130,6 +130,46 @@ describe('JapiTableHead', () => {
     expect(node).toMatchSnapshot();
   });
 
+  it('renders row values with render function', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id'
+      },
+      {
+        key: 'date',
+        header: 'Date',
+        renderValue: function (cellData, { rowData }) {
+          return (
+            <time datetime={cellData}>{rowData.attributes.other}</time>
+          );
+        }
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '101',
+          type: '_type',
+          attributes: {
+            date: '2017-04-10',
+            other: 'some other value'
+          }
+        },
+        {
+          id: '102',
+          type: '_type',
+          attributes: {
+            date: '2017-04-12',
+            other: 'another other value'
+          }
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
+
   it('renders cell values of 1:1 relationships', () => {
     const columns = [
       {
