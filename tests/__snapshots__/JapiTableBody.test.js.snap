@@ -79,6 +79,35 @@ exports[`JapiTableHead renders appropriate cell values 1`] = `
 </tbody>
 `;
 
+exports[`JapiTableHead renders cell values of 1:1 relationships 1`] = `
+<tbody>
+  <tr>
+    <td
+      className={undefined}
+    >
+      101
+    </td>
+    <td
+      className={undefined}
+    >
+      Game no 1
+    </td>
+  </tr>
+  <tr>
+    <td
+      className={undefined}
+    >
+      102
+    </td>
+    <td
+      className={undefined}
+    >
+      Game no 2
+    </td>
+  </tr>
+</tbody>
+`;
+
 exports[`JapiTableHead renders cell values with render function 1`] = `
 <tbody>
   <tr>

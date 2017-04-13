@@ -1,11 +1,37 @@
 import React from 'react';
 
 export default class JapiTableBody extends React.Component {
-  getValue (row, column) {
+  getAttribute (data, key) {
+    return key === 'id' ? data[key] : (typeof data['attributes'] !== 'undefined' ? data['attributes'][key] : undefined);
+  }
+
+  getIncluded (relation) {
+    return this.props.data.included.find((elem) => {
+      return elem['type'] == relation['type'] && elem['id'] == relation['id'];
+    });
+  }
+
+  getValueOfKeyPath (keyPath, data) {
+    if (keyPath.length == 1) {
+      return this.getAttribute(data, keyPath[0]);
+    } else {
+      const key = keyPath.shift();
+      const relation = data['relationships'][key]['data'];
+      if (relation) {
+        const reference = this.getIncluded(relation);
+        return this.getValueOfKeyPath(keyPath, reference);
+      }
+      return undefined;
+    }
+  }
+
+  getValue (data, column) {
     const key = column.key;
-    let value = key === 'id' ? row['id'] : (typeof row['attributes'] !== 'undefined' ? row['attributes'][key] : undefined);
+    const keyPath = key.split('.');
+    let value = this.getValueOfKeyPath(keyPath, data, column);
+
     if (column.renderValue) {
-      value = column.renderValue(value);
+      return column.renderValue(value);
     }
     return value;
   }

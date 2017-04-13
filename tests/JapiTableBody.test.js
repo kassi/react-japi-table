@@ -129,4 +129,69 @@ describe('JapiTableHead', () => {
     const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
     expect(node).toMatchSnapshot();
   });
+
+  it('renders cell values of 1:1 relationships', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id'
+      },
+      {
+        key: 'game.title',
+        header: 'Titel'
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '101',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-10'
+          },
+          relationships: {
+            game: {
+              data: {
+                id: '201',
+                type: 'games'
+              }
+            }
+          }
+        },
+        {
+          id: '102',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-12'
+          },
+          relationships: {
+            game: {
+              data: {
+                id: '202',
+                type: 'games'
+              }
+            }
+          }
+        }
+      ],
+      included: [
+        {
+          id: '201',
+          type: 'games',
+          attributes: {
+            title: 'Game no 1'
+          }
+        },
+        {
+          id: '202',
+          type: 'games',
+          attributes: {
+            title: 'Game no 2'
+          }
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
 });
