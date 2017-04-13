@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 const config = {
+  devtool: 'source-map',
   entry: {
     index: ['./src/index.js']
   },

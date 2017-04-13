@@ -11,7 +11,7 @@
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server -d --config webpack.development.config.js --progress --colors --display-error-details",
-    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors --display-error-details",
+    "build": "NODE_ENV=development node_modules/.bin/webpack -p --progress --colors --display-error-details --config webpack.development.config.js",
     "prepublishOnly": "yarn run build",
     "test": "semistandard | snazzy && BABEL_JEST_STAGE=0 jest",
     "test:server": "BABEL_JEST_STAGE=0 jest --watchAll",
