@@ -23,11 +23,12 @@ export default class JapiTableBody extends React.Component {
       return [this.getAttribute(data, keyPath[0]), data];
     } else {
       const key = keyPath.shift();
-      const relation = data['relationships'][key]['data'];
+      const relation = data.relationships && data.relationships[key] && data.relationships[key]['data'];
       if (relation) {
         const reference = this.getIncluded(relation)[0];
         return this.getValueOfKeyPath(keyPath, reference);
       }
+      console.warn('relationship not found in data:', key);
       return undefined;
     }
   }

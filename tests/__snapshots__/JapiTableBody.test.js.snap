@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`JapiTableBody adds links to unrendered value 1`] = `
+exports[`JapiTableBody render adds links to unrendered value 1`] = `
 <tbody>
   <tr>
     <td
@@ -45,7 +45,7 @@ exports[`JapiTableBody adds links to unrendered value 1`] = `
 </tbody>
 `;
 
-exports[`JapiTableBody has access to related objects via key path and renderValue function 1`] = `
+exports[`JapiTableBody render has access to related objects via key path and renderValue function 1`] = `
 <tbody>
   <tr>
     <td
@@ -72,7 +72,7 @@ exports[`JapiTableBody has access to related objects via key path and renderValu
 </tbody>
 `;
 
-exports[`JapiTableBody renders a table row for each data entry 1`] = `
+exports[`JapiTableBody render renders a table row for each data entry 1`] = `
 <tbody>
   <tr>
     <td
@@ -97,7 +97,7 @@ exports[`JapiTableBody renders a table row for each data entry 1`] = `
 </tbody>
 `;
 
-exports[`JapiTableBody renders an optional header cell className 1`] = `
+exports[`JapiTableBody render renders an optional header cell className 1`] = `
 <tbody>
   <tr>
     <td
@@ -122,7 +122,7 @@ exports[`JapiTableBody renders an optional header cell className 1`] = `
 </tbody>
 `;
 
-exports[`JapiTableBody renders appropriate cell values 1`] = `
+exports[`JapiTableBody render renders appropriate cell values 1`] = `
 <tbody>
   <tr>
     <td
@@ -151,7 +151,7 @@ exports[`JapiTableBody renders appropriate cell values 1`] = `
 </tbody>
 `;
 
-exports[`JapiTableBody renders cell values of 1:1 relationships 1`] = `
+exports[`JapiTableBody render renders cell values of 1:1 relationships 1`] = `
 <tbody>
   <tr>
     <td
@@ -180,7 +180,7 @@ exports[`JapiTableBody renders cell values of 1:1 relationships 1`] = `
 </tbody>
 `;
 
-exports[`JapiTableBody renders cell values with render function 1`] = `
+exports[`JapiTableBody render renders cell values with render function 1`] = `
 <tbody>
   <tr>
     <td
@@ -217,7 +217,7 @@ exports[`JapiTableBody renders cell values with render function 1`] = `
 </tbody>
 `;
 
-exports[`JapiTableBody renders object values of relationships with render function 1`] = `
+exports[`JapiTableBody render renders object values of relationships with render function 1`] = `
 <tbody>
   <tr>
     <td
@@ -246,7 +246,7 @@ exports[`JapiTableBody renders object values of relationships with render functi
 </tbody>
 `;
 
-exports[`JapiTableBody renders row values with render function 1`] = `
+exports[`JapiTableBody render renders row values with render function 1`] = `
 <tbody>
   <tr>
     <td
