@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 
 import JapiTableBody from '../src/JapiTableBody';
 
-describe('JapiTableHead', () => {
+describe('JapiTableBody', () => {
   it('renders a tbody', () => {
     expect(shallow(<JapiTableBody />).type()).toBe('tbody');
   });
