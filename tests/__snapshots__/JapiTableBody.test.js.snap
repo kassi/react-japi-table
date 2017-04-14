@@ -45,6 +45,33 @@ exports[`JapiTableHead adds links to unrendered value 1`] = `
 </tbody>
 `;
 
+exports[`JapiTableHead has access to related objects via key path and renderValue function 1`] = `
+<tbody>
+  <tr>
+    <td
+      className={undefined}
+    >
+      201
+    </td>
+    <td
+      className={undefined}
+    >
+      2017-04-10
+    </td>
+    <td
+      className={undefined}
+    >
+      2
+    </td>
+    <td
+      className={undefined}
+    >
+      player one
+    </td>
+  </tr>
+</tbody>
+`;
+
 exports[`JapiTableHead renders a table row for each data entry 1`] = `
 <tbody>
   <tr>

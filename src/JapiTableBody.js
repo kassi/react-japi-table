@@ -2,12 +2,19 @@ import React from 'react';
 
 export default class JapiTableBody extends React.Component {
   getAttribute (data, key) {
-    return key === 'id' ? data[key] : (typeof data['attributes'] !== 'undefined' ? data['attributes'][key] : undefined);
+    let result = key === 'id' ? data[key]
+      : (data.attributes && data.attributes[key]) ? data.attributes[key]
+      : (data.relationships && data.relationships[key]) ? this.getIncluded(data.relationships[key].data)
+      : undefined;
+    return result;
   }
 
-  getIncluded (relation) {
-    return this.props.data.included.find((elem) => {
-      return elem['type'] == relation['type'] && elem['id'] == relation['id'];
+  getIncluded (relation_or_array) {
+    let relations = Array.isArray(relation_or_array) ? relation_or_array : [relation_or_array];
+    return relations.map((relation, i) => {
+      return this.props.data.included.find((elem) => {
+        return elem['type'] == relation['type'] && elem['id'] == relation['id'];
+      });
     });
   }
 
@@ -18,7 +25,7 @@ export default class JapiTableBody extends React.Component {
       const key = keyPath.shift();
       const relation = data['relationships'][key]['data'];
       if (relation) {
-        const reference = this.getIncluded(relation);
+        const reference = this.getIncluded(relation)[0];
         return this.getValueOfKeyPath(keyPath, reference);
       }
       return undefined;
@@ -33,7 +40,7 @@ export default class JapiTableBody extends React.Component {
     let value_object = Array.isArray(value_and_object) ? value_and_object[1] : data;
 
     if (column.renderValue) {
-      return column.renderValue(value, {rowData: data, objectData: value_object});
+      return column.renderValue(value, {rowData: data, objectData: value_object, getIncluded: this.getIncluded.bind(this)});
     }
     if (column.autolink && !!(value_object.links && value_object.links.self)) {
       return (

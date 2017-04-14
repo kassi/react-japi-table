@@ -383,4 +383,114 @@ describe('JapiTableHead', () => {
     const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
     expect(node).toMatchSnapshot();
   });
+
+  it('has access to related objects via key path and renderValue function', () => {
+    const columns = [
+      {
+        key: 'id',
+        header: 'Id'
+      },
+      {
+        key: 'date',
+        header: 'Date'
+      },
+      {
+        key: 'participations',
+        header: 'Participations',
+        renderValue: function (cellData, { rowData }) {
+          return cellData.length;
+        }
+      },
+      {
+        key: 'participations',
+        header: 'Participations',
+        renderValue: function (cellData, { objectData, getIncluded }) {
+          const winners = cellData.filter((elem, i) => {
+            return elem.attributes.winner;
+          });
+          const names = winners.map((elem, i) => {
+            return getIncluded(elem.relationships.player.data).map((player) => {
+              return player.attributes.name;
+            });
+          });
+          return names.join(', ');
+        }
+      }
+    ];
+    const data = {
+      data: [
+        {
+          id: '201',
+          type: 'matches',
+          attributes: {
+            date: '2017-04-10'
+          },
+          relationships: {
+            participations: {
+              data: [
+                {
+                  id: '301',
+                  type: 'participations'
+                },
+                {
+                  id: '302',
+                  type: 'participations'
+                }
+              ]
+            }
+          }
+        }
+      ],
+      included: [
+        {
+          id: '301',
+          type: 'participations',
+          attributes: {
+            points: 51,
+            winner: true
+          },
+          relationships: {
+            player: {
+              data: {
+                id: '401',
+                type: 'players'
+              }
+            }
+          }
+        },
+        {
+          id: '302',
+          type: 'participations',
+          attributes: {
+            points: 47,
+            winner: false
+          },
+          relationships: {
+            player: {
+              data: {
+                id: '402',
+                type: 'players'
+              }
+            }
+          }
+        },
+        {
+          id: '401',
+          type: 'players',
+          attributes: {
+            name: 'player one'
+          }
+        },
+        {
+          id: '402',
+          type: 'players',
+          attributes: {
+            name: 'player two'
+          }
+        }
+      ]
+    };
+    const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+    expect(node).toMatchSnapshot();
+  });
 });
