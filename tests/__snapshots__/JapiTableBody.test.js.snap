@@ -72,6 +72,25 @@ exports[`JapiTableBody render has access to related objects via key path and ren
 </tbody>
 `;
 
+exports[`JapiTableBody render hides a group column when gropuColumn is set to "hide" 1`] = `
+<tbody>
+  <tr>
+    <td
+      className={undefined}
+    >
+      Title 1
+    </td>
+  </tr>
+  <tr>
+    <td
+      className={undefined}
+    >
+      Title 2
+    </td>
+  </tr>
+</tbody>
+`;
+
 exports[`JapiTableBody render renders a table row for each data entry 1`] = `
 <tbody>
   <tr>

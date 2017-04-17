@@ -506,5 +506,42 @@ describe('JapiTableBody', () => {
       const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
       expect(node).toMatchSnapshot();
     });
+
+    it('hides a group column when gropuColumn is set to "hide"', () => {
+      const columns = [
+        {
+          key: 'date',
+          header: 'Date',
+          group: true,
+          groupColumn: 'hide'
+        },
+        {
+          key: 'title',
+          header: 'Title'
+        }
+      ];
+      const data = {
+        data: [
+          {
+            id: '101',
+            type: '_type',
+            attributes: {
+              date: '2017-01-01',
+              title: 'Title 1'
+            }
+          },
+          {
+            id: '102',
+            type: '_type',
+            attributes: {
+              date: '2017-01-02',
+              title: 'Title 2'
+            }
+          }
+        ]
+      };
+      const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+      expect(node).toMatchSnapshot();
+    });
   });
 });

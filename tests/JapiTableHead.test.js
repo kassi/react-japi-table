@@ -39,4 +39,21 @@ describe('JapiTableHead', () => {
     const node = renderer.create(<JapiTableHead columns={columns} />).toJSON();
     expect(node).toMatchSnapshot();
   });
+
+  it('hides a group column when gropuColumn is set to "hide"', () => {
+    const columns = [
+      {
+        header: 'Id',
+        headerClassName: 'class1',
+        group: true,
+        groupColumn: 'hide'
+      },
+      {
+        header: 'Title',
+        headerClassName: 'class2'
+      }
+    ];
+    const node = renderer.create(<JapiTableHead columns={columns} />).toJSON();
+    expect(node).toMatchSnapshot();
+  });
 });

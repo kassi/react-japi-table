@@ -58,11 +58,13 @@ export default class JapiTableBody extends React.Component {
           return (
             <tr key={i}>
               {this.props.columns.map((column, j) => {
-                return (
-                  <td className={column['cellClassName']} key={'' + i + '-' + j}>
-                    {this.getValue(row, column)}
-                  </td>
-                );
+                if (!(column.group && column.groupColumn === 'hide')) {
+                  return (
+                    <td className={column['cellClassName']} key={'' + i + '-' + j}>
+                      {this.getValue(row, column)}
+                    </td>
+                  );
+                }
               })}
             </tr>
           );
