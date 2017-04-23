@@ -8,11 +8,11 @@ describe('JapiTableHead', () => {
   const table = document.createElement('table');
 
   it('renders a thead', () => {
-    expect(shallow(<JapiTableHead />).type()).toBe('thead');
+    expect(shallow(<JapiTableHead columns={[]} />).type()).toBe('thead');
   });
 
   it('renders a table row', () => {
-    const node = mount(<JapiTableHead />, { attachTo: table });
+    const node = mount(<JapiTableHead columns={[]} />, { attachTo: table });
     expect(node.html()).toEqual('<thead><tr></tr></thead>');
   });
 

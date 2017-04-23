@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class JapiTableHead extends React.Component {
   render () {
@@ -17,3 +18,7 @@ export default class JapiTableHead extends React.Component {
     );
   }
 }
+
+JapiTableHead.propTypes = {
+  columns: PropTypes.array.isRequired
+};
