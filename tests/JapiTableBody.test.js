@@ -1,8 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import JapiTableBody from '../src/JapiTableBody';
+
+function mountToTable ({columns = [], data = {}, ...args} = {}) {
+  const table = document.createElement('table');
+  return mount(<JapiTableBody columns={columns} data={data} />, { attachTo: table });
+}
 
 describe('JapiTableBody', () => {
   describe('getValueOfKeyPath', () => {
@@ -19,7 +24,7 @@ describe('JapiTableBody', () => {
 
   describe('render', () => {
     it('renders a tbody', () => {
-      expect(shallow(<JapiTableBody />).type()).toBe('tbody');
+      expect(shallow(<JapiTableBody columns={[]} data={{}} />).type()).toBe('tbody');
     });
 
     it('renders a table row for each data entry', () => {

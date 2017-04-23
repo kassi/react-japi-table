@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default class JapiTableBody extends React.Component {
   getAttribute (data, key) {
@@ -73,3 +74,8 @@ export default class JapiTableBody extends React.Component {
     );
   }
 }
+
+JapiTableBody.propTypes = {
+  columns: PropTypes.array.isRequired,
+  data: PropTypes.object.isRequired
+};
