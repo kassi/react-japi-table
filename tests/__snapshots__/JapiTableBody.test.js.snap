@@ -1,5 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`JapiTableBody render adds a row above each data row for a group value 1`] = `
+<tbody>
+  <tr
+    className={undefined}
+  >
+    <td
+      colSpan={2}
+    >
+      2017-01-03
+    </td>
+  </tr>
+  <tr>
+    <td
+      className={undefined}
+    >
+      Title 1
+    </td>
+    <td
+      className={undefined}
+    >
+      30
+    </td>
+  </tr>
+  <tr>
+    <td
+      className={undefined}
+    >
+      Title 2
+    </td>
+    <td
+      className={undefined}
+    >
+      40
+    </td>
+  </tr>
+  <tr
+    className={undefined}
+  >
+    <td
+      colSpan={2}
+    >
+      2017-01-02
+    </td>
+  </tr>
+  <tr>
+    <td
+      className={undefined}
+    >
+      Title 3
+    </td>
+    <td
+      className={undefined}
+    >
+      50
+    </td>
+  </tr>
+</tbody>
+`;
+
 exports[`JapiTableBody render adds links to unrendered value 1`] = `
 <tbody>
   <tr>
@@ -72,13 +131,31 @@ exports[`JapiTableBody render has access to related objects via key path and ren
 </tbody>
 `;
 
-exports[`JapiTableBody render hides a group column when gropuColumn is set to "hide" 1`] = `
+exports[`JapiTableBody render hides a group column when groupColumn is set to "hide" 1`] = `
 <tbody>
+  <tr
+    className={undefined}
+  >
+    <td
+      colSpan={1}
+    >
+      2017-01-01
+    </td>
+  </tr>
   <tr>
     <td
       className={undefined}
     >
       Title 1
+    </td>
+  </tr>
+  <tr
+    className={undefined}
+  >
+    <td
+      colSpan={1}
+    >
+      2017-01-02
     </td>
   </tr>
   <tr>

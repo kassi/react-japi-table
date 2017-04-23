@@ -22,6 +22,81 @@ describe('JapiTableBody', () => {
     });
   });
 
+  describe('preProcessData', () => {
+    const table = document.createElement('table');
+    describe('without props', () => {
+      it("doesn't change state", () => {
+        const body = mountToTable();
+        body.instance().setState({data: [{test: 1}]});
+        body.instance().preProcessData();
+        expect(body.state()).toHaveProperty('data', [{test: 1}]);
+      });
+    });
+    describe('with data', () => {
+      describe('without group column', () => {
+        it('stores data in state', function () {
+          const body = mountToTable();
+          body.instance().preProcessData({data: {data: [{test: 1}]}});
+          expect(body.state()).toHaveProperty('data', [{test: 1}]);
+        });
+      });
+      describe('with group column', () => {
+        const columns = [
+          {
+            key: 'date',
+            group: true
+          },
+          {
+            key: 'id'
+          }
+        ];
+        const data = {
+          data: [
+            {
+              id: '101',
+              attributes: {
+                date: '2017-04-19'
+              }
+            },
+            {
+              id: '102',
+              attributes: {
+                date: '2017-04-19'
+              }
+            }
+          ]
+        };
+        it('adds a group entry to data stored in state', function () {
+          const body = mountToTable({columns: columns});
+          body.instance().preProcessData({data: data});
+          expect(body.state()).toHaveProperty('data', [
+            {
+              id: '101',
+              attributes: {
+                date: '2017-04-19'
+              },
+              group: 'date',
+              column: columns[0],
+              colSpan: 2
+            },
+            {
+              id: '101',
+              attributes: {
+                date: '2017-04-19'
+              }
+            },
+            {
+              id: '102',
+              attributes: {
+                date: '2017-04-19'
+              }
+            }
+          ]);
+        });
+      });
+    });
+  });
+
   describe('render', () => {
     it('renders a tbody', () => {
       expect(shallow(<JapiTableBody columns={[]} data={{}} />).type()).toBe('tbody');
@@ -512,7 +587,59 @@ describe('JapiTableBody', () => {
       expect(node).toMatchSnapshot();
     });
 
-    it('hides a group column when gropuColumn is set to "hide"', () => {
+    it('adds a row above each data row for a group value', () => {
+      const columns = [
+        {
+          key: 'date',
+          header: 'Date',
+          group: true,
+          groupColumn: 'hide'
+        },
+        {
+          key: 'title',
+          header: 'Title'
+        },
+        {
+          key: 'duration',
+          header: 'Duration'
+        }
+      ];
+      const data = {
+        data: [
+          {
+            id: '103',
+            type: '_type',
+            attributes: {
+              date: '2017-01-03',
+              title: 'Title 1',
+              duration: '30'
+            }
+          },
+          {
+            id: '102',
+            type: '_type',
+            attributes: {
+              date: '2017-01-03',
+              title: 'Title 2',
+              duration: '40'
+            }
+          },
+          {
+            id: '101',
+            type: '_type',
+            attributes: {
+              date: '2017-01-02',
+              title: 'Title 3',
+              duration: '50'
+            }
+          }
+        ]
+      };
+      const node = renderer.create(<JapiTableBody columns={columns} data={data} />);
+      expect(node).toMatchSnapshot();
+    });
+
+    it('hides a group column when groupColumn is set to "hide"', () => {
       const columns = [
         {
           key: 'date',

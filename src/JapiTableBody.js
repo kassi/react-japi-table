@@ -2,6 +2,51 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export default class JapiTableBody extends React.Component {
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      data: [] // stores adapted data taken from props data, enriched with group info
+    };
+  }
+
+  componentDidMount () {
+    this.preProcessData(this.props);
+  }
+
+  componentWillReceiveProps (newProps) {
+    this.preProcessData(newProps);
+  }
+
+  preProcessData (newProps) {
+    if (newProps) {
+      const rawColumns = newProps.columns ? newProps.columns : this.props.columns;
+      const rawData = (newProps.data ? newProps.data.data : this.props.data ? this.props.data.data : []) || [];
+      const groupColumn = rawColumns.find((elem, i) => { return elem.group; });
+      let data = [];
+      if (groupColumn) {
+        let groups = {};
+        rawData.forEach((elem, i) => {
+          const groupKey = groupColumn['key'];
+          const groupValue = this.getAttribute(elem, groupKey);
+          if (!groups[groupValue]) {
+            groups[groupValue] = 1;
+            const groupData = {
+              group: groupKey,
+              column: groupColumn,
+              colSpan: groupColumn['groupColumn'] === 'hide' ? rawColumns.length - 1 : rawColumns.length
+            };
+            data.push(Object.assign({}, elem, groupData));
+          }
+          data.push(elem);
+        });
+      } else if (rawData) {
+        data = rawData;
+      }
+      this.setState({data: data});
+    }
+  }
+
   getAttribute (data, key) {
     let result = key === 'id' ? data[key]
       : (data.attributes && data.attributes[key]) ? data.attributes[key]
@@ -55,21 +100,31 @@ export default class JapiTableBody extends React.Component {
   render () {
     return (
       <tbody>
-        {this.props.data && this.props.data['data'] ? this.props.data['data'].map((row, i) => {
-          return (
-            <tr key={i}>
-              {this.props.columns.map((column, j) => {
-                if (!(column.group && column.groupColumn === 'hide')) {
-                  return (
-                    <td className={column['cellClassName']} key={'' + i + '-' + j}>
-                      {this.getValue(row, column)}
-                    </td>
-                  );
-                }
-              })}
-            </tr>
-          );
-        }) : undefined}
+        {this.state.data.map((row, i) => {
+          if (row.group) {
+            return (
+              <tr key={i} className={row.column.groupRowClassName}>
+                <td colSpan={row.colSpan}>
+                  {this.getValue(row, row.column)}
+                </td>
+              </tr>
+            );
+          } else {
+            return (
+              <tr key={i}>
+                {this.props.columns.map((column, j) => {
+                  if (!(column.group && column.groupColumn === 'hide')) {
+                    return (
+                      <td className={column['cellClassName']} key={'' + i + '-' + j}>
+                        {this.getValue(row, column)}
+                      </td>
+                    );
+                  }
+                })}
+              </tr>
+            );
+          }
+        })}
       </tbody>
     );
   }
