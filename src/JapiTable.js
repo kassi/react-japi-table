@@ -6,9 +6,8 @@ import JapiTableBody from './JapiTableBody';
 
 export default class JapiTable extends React.Component {
   render () {
-    const className = 'tablesorter' + (typeof this.props.className !== 'undefined' ? ' ' + this.props.className : '');
     return (
-      <table className={className}>
+      <table className={this.props.className}>
         <JapiTableHead columns={this.props.columns} />
         <JapiTableBody columns={this.props.columns} data={this.props.data} />
       </table>

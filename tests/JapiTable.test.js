@@ -12,13 +12,8 @@ describe('JapiTable', () => {
     expect(shallow(<JapiTable columns={[]} data={{}} />).type()).toBe('table');
   });
 
-  it('adds tablesorter class', () => {
-    expect(shallow(<JapiTable columns={[]} data={{}} />).hasClass('tablesorter')).toBeTruthy();
-  });
-
   it('adds all given class names', () => {
     const node = shallow(<JapiTable columns={[]} data={{}} className='one two' />);
-    expect(node.hasClass('tablesorter')).toBeTruthy();
     expect(node.hasClass('one')).toBeTruthy();
     expect(node.hasClass('two')).toBeTruthy();
   });
