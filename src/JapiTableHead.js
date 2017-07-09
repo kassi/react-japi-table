@@ -9,7 +9,7 @@ export default class JapiTableHead extends React.Component {
           {this.props.columns ? this.props.columns.map((column, i) => {
             if (!(column.group && column.groupColumn === 'hide')) {
               return (
-                <th className={column['headerClassName']} key={i}>{column.header}</th>
+                <th className={column['headerClassName']} key={i} width={column.width}>{column.header}</th>
               );
             }
           }) : undefined}

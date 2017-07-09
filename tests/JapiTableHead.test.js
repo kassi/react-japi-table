@@ -40,7 +40,22 @@ describe('JapiTableHead', () => {
     expect(node).toMatchSnapshot();
   });
 
-  it('hides a group column when gropuColumn is set to "hide"', () => {
+  it('renders an optional header cell width', () => {
+    const columns = [
+      {
+        header: 'Id',
+        width: '30%'
+      },
+      {
+        header: 'Title',
+        width: '70%'
+      }
+    ];
+    const node = renderer.create(<JapiTableHead columns={columns} />).toJSON();
+    expect(node).toMatchSnapshot();
+  });
+
+  it('hides a group column when groupColumn is set to "hide"', () => {
     const columns = [
       {
         header: 'Id',

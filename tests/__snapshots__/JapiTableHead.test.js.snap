@@ -1,10 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`JapiTableHead hides a group column when gropuColumn is set to "hide" 1`] = `
+exports[`JapiTableHead hides a group column when groupColumn is set to "hide" 1`] = `
 <thead>
   <tr>
     <th
       className="class2"
+      width={undefined}
     >
       Title
     </th>
@@ -17,11 +18,13 @@ exports[`JapiTableHead renders a cell for each column 1`] = `
   <tr>
     <th
       className={undefined}
+      width={undefined}
     >
       Id
     </th>
     <th
       className={undefined}
+      width={undefined}
     >
       Title
     </th>
@@ -34,11 +37,32 @@ exports[`JapiTableHead renders an optional header cell className 1`] = `
   <tr>
     <th
       className="class1"
+      width={undefined}
     >
       Id
     </th>
     <th
       className="class2"
+      width={undefined}
+    >
+      Title
+    </th>
+  </tr>
+</thead>
+`;
+
+exports[`JapiTableHead renders an optional header cell width 1`] = `
+<thead>
+  <tr>
+    <th
+      className={undefined}
+      width="30%"
+    >
+      Id
+    </th>
+    <th
+      className={undefined}
+      width="70%"
     >
       Title
     </th>
